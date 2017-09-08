@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS-17课 ng-show、ng-if的使用</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+    <style type="text/css">
+        .container > div{ line-height: 60px; }
+    </style>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <div class="container">
+        <label><input type="checkbox" ng-model='status'>接收该协议</label>
+        <br>
+        <button ng-if='status'>登录</button><br><br>
+        <div>
+            <button ng-init='copyright="false"'>查看该协议</button><br>
+            <textarea name='' ng-if='copyright'>协议内容：本视频是angularJs教程</textarea>
+        </div>
+    </div>
+</body>
+    <script>
+        var module = angular.module('app',[]);
+        module.controller('ctrl',['$scope',function($scope){
+
+
+        }]);
+    </script>
+</html>
