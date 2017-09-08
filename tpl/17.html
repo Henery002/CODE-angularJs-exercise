@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>angularJS-16课 ng-show的使用</title>
+    <title>angularJS-16课 ng-show、ng-if的使用</title>
     <script src="../js/angular.js"></script>
     <script type="text/javascript" src='../js/jquery.min.js'></script>
 </head>
@@ -12,13 +12,14 @@
         <input type="checkbox" name="" ng-model='name'>
         <span>{{ name }}</span>
         <br><br>
-        <button ng-show='name'>我已同意该协议</button>
+        <button ng-show='name'>我已同意该协议-show</button>
+        <button ng-if='name'>我已同意该协议-if</button>
     </div>
 </body>
     <script>
         var module = angular.module('app',[]);
         module.controller('ctrl',['$scope',function($scope){
-            
+            $scope.name = false;    //假设默认初始值为false
 
         }]);
     </script>

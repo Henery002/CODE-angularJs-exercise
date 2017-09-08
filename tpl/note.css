@@ -82,8 +82,8 @@
 		标题：<input ng-trim ng-model='title' />
 
 <17> 使用 ng-if、ng-show、ng-disabled、ng-init 实现网站注册协议设置
-1.ng-show
-2.ng-if
+1.ng-show 			//通过css类名控制显隐
+2.ng-if 			//通过删除增加控制显隐
 
 
 
