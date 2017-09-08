@@ -1,0 +1,107 @@
+/*
+	TODO 网易云课堂后盾网 angularJS教程
+*/
+【学习目录】：[2017-09-05 ~]
+
+<01> 什么是angular及与jquery实例对比分析
+
+<02> angularjs开发宝典之模块、视图模型、控制器、双向数据绑定模型
+
+<03> angularjs开发宝典之MVVM双向数据绑定
+
+<04> 声明模块与控制器规范与依赖注入分析
+
+<05> [20170906]$scope的基本使用方法：
+1.ng-app
+2.ng-controller
+3.ng-click
+4.ng-module
+
+<06> [20170906]表达式与 ng-bind 及 ng-cloak 解决闪屏问题：
+1.ng-bind	
+2.ng-cloak	解决闪屏问题
+
+<07> ng-model 在表单中双向绑定实例分析讲解
+
+<08> ng-value 的使用实例讲解
+1.ng-value 指令。用于input中，可接受表达式，区别于 ng-model
+	
+<09> 实例讲解 angaular 控制单选框
+1.ng-show 
+
+<10> 实例讲解 angular 操作chexkbox复选框
+
+<11> 实例讲解 angular 操作 select 列表框
+1.ng-options    ==>    <select ng-options="v.value as v.name for v in data" ng-model="city">...</select>
+
+<12> 函数使用方法大小写转换与对象深拷贝
+1.angular.version
+2.angular.lowercase()
+3.angular.uppercase()
+4.angular.copy()
+5. ...
+
+<13> [20170907]函数使用对象扩充与数据遍历
+1.angular.extend();
+2.angular.forEach(data,function(v,k){});	==>		可遍历数组或对象
+	例：var data = { name:'name1',age:'age1'  };
+		angular.forEach(data,function(v,k){
+			console.log(v,k)		//v表示属性值，k表示下标name/age
+		})
+
+<14> [20170907]json数据转换与本地存储及$scope数据序列化提交到后台
+1.localStorage.setItem('data',$scope.data);		//将data对象保存进本地（保存后变成了json字符串）
+2.localStorage.getItem('data');					//获取本地存储的data字符串
+
+3.angular.toJson(...);		//将对象转换成json字符串，如：angular.toJson($scope.data = {'name':'后盾人'});
+4.angular.fromJson(localStorage.getItem('data'));		//将json字符串转换成对象，方便读取，如：angular.fromJson()
+
+5.表单序列化 见【例14.html/14.php】
+
+<15> 数据类型判断函数与数据比较方法的使用
+ 1.angular.isArray([]);				//true
+ 2.angular.isDate(new Date());		//true
+ 3.angular.isDefined(a);				//若a已声明未赋值，则为false；若a未声明，则报错
+ 4.angular.isUndefined();			//
+ 5.angular.isFunction(function(){});	//true
+ 6.angular.isNumber();				//
+ 7.angular.isString();				//
+ 8.angular.isObject({});				//true
+ 9.angular.isElement(document.getElementsByTagName('body').item(0));		//true
+10.angular.equals(a,b);				//若 a = {}; b = {};则为 true。
+...
+
+<16> ng-init 与 ng-trim 及表单中表单value与$scope数据提交差异分析
+1.ng-init		//直接临时定义数据
+	例：<div ng-app='app' ng-controller='myctrl' ng-init='name="后盾人"'>
+			{{ name }}
+		</div
+2.ng-trim		//清楚字符串头尾两端的空字符。angular中默认都有，若不使用，设置为 ng-init="false"。
+				//但 <input type="password"/>类型的input不糊清除头尾空格
+	例：
+		标题：<input ng-trim ng-model='title' />
+
+<17> 使用 ng-if、ng-show、ng-disabled、ng-init 实现网站注册协议设置
+1.ng-show
+
+
+
+<18> ng-repeat 实例详细讲解与后盾人网站进行分析
+
+<19> ng-selected、ng-disabled、ng-readonly 实例讲解
+
+<20> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

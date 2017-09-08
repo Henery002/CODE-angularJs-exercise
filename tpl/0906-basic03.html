@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS-13课：函数使用对象扩充与数据遍历</title>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <div>
+
+    </div>
+</body>
+    <script>
+        var module = angular.module('app',[]);
+        module.controller('ctrl',['$scope',function($scope){
+            var obj = {"name":"后盾网"};
+            angular.extend(obj,{
+                url:'www.baidu.com',
+                web:'后盾人'
+            });
+            angular.extend(obj,{
+                title:'sublime'
+            });
+            console.log(obj);
+        }]);
+
+    </script>
+</html>

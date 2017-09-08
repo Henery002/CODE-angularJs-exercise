@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS-05课</title>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <div>
+        <p>名称：{{ goods.data.name }}</p>
+        <p>价格：{{ goods.data.price }}</p>
+        <p>数量：<input type='number' min='0' max='8' ng-model='goods.data.num'/></p>
+        <p>总价：{{ goods.data.price * goods.data.num }} / <input type="" name="" ng-value='goods.data.price * goods.data.num' readonly="readonly"> 元</p>
+        <button ng-click='goods.fun()'>点击触发函数</button>
+        <button ng-click='goods.add()'>增加</button>
+        <button ng-click='goods.reduce()'>减少</button>
+    </div>
+</body>
+    <script>
+        var module = angular.module('app',[]);
+        module.controller('ctrl',['$scope',function($scope){
+            $scope.goods = {
+                data:{
+                    'name':'apple',
+                    'price':'4000',
+                    'num':0
+                },
+                fun:function(){
+                    alert('已触发');
+                },
+                add:function(){
+                    $scope.goods.data.num = Math.min(++$scope.goods.data.num,8);  //表示最大到8
+                },
+                reduce:function(){
+                    $scope.goods.data.num = Math.max(--$scope.goods.data.num,0);  //表示最小从0开始
+                }
+            }
+        }]);
+
+
+    </script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS-14课</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <div>
+    <form action="../php/14.php" method="post">
+        姓名：<input type="text" ng-model='field.name'><br>
+        年龄：<input type='number' ng-model='field.age'><br>
+        <textarea cols="30" rows="6" type='text' name='data'></textarea><br>       //必须有name='data'属性，php中获取该属性$_POST['data']，否则无法提交到php <br>
+        <input type="submit"><br>
+        {{ field }}
+    </form>
+    </div>
+</body>
+    <script>
+        var module = angular.module('app',[]);
+        module.controller('ctrl',['$scope',function($scope){
+            $scope.field = {'name':'','age':''};
+            // localStorage.setItem('field',angular.toJson($scope.field));   //如果直接保存 $scope.field，将无法把对象保存进本地，要使用angular.toJson进行转换成 字符串
+            // $scope.field = angular.fromJson(localStorage.getItem('field'));   //若要读取，需将 字符串转换成Json对象，才可以读取
+
+            // $('form').submit(function(){
+                // $('textarea').val(angular.toJson($scope.field));
+                // return false;
+            // });
+
+            //数据类型判断
+            var a;
+            console.log(angular.isUndefined(a));
+
+
+        }]);
+
+    </script>
+</html>

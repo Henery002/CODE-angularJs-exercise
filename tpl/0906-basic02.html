@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS-10课：ng-true-value</title>
+    <script src="../js/angular.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <div>
+        游戏：<input type="checkbox" ng-model='data.game' ng-true-value='1' ng-false-value='0'><br/>
+        电影：<input type="checkbox" ng-model='data.video' ng-true-value='1' ng-false-value='0'><br/>
+        {{ data }}
+        <div ng-show="data.game">
+            <h2>这是游戏</h2>
+            <textarea></textarea>
+        </div>
+        <div ng-show="data.video">
+            <h2>这是电影</h2>
+            <textarea></textarea>
+        </div>
+
+    </div>
+</body>
+    <script>
+        var module = angular.module('app',[]);
+        module.controller('ctrl',['$scope',function($scope){
+            $scope.data = {
+                game:1,
+                video:0
+            }
+        }]);
+
+    </script>
+</html>

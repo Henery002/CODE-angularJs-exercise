@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS-16课</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+    <div>
+        <input type="checkbox" name="" ng-model='name'><br>
+        {{ name }}
+    </div>
+</body>
+    <script>
+        var module = angular.module('app',[]);
+        module.controller('ctrl',['$scope',function($scope){
+            
+
+        }]);
+    </script>
+</html>
