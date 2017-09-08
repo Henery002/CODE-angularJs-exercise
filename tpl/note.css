@@ -83,9 +83,11 @@
 
 <17> 使用 ng-if、ng-show、ng-disabled、ng-init 实现网站注册协议设置
 1.ng-show 			//通过css类名控制显隐
-2.ng-if 			//通过删除增加控制显隐
+2.ng-if 			//通过增删控制显隐
+3.ng-disabled 		//针对button控制其是否可点击
+4.ng-click 			//
 
-
+5.ng-model 
 
 <18> ng-repeat 实例详细讲解与后盾人网站进行分析
 
