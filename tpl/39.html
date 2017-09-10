@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 39课 在控制器中使用过滤器</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    {{ data }}<br><br>     <!-- 升序 -->
+    <!-- {{ data | orderBy:'id':true }}<br><br> -->      <!-- 降序 -->
+
+    <button type='button' ng-click="orderBy()">在控制器中使用过滤器</button>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('myctrl',['$scope','$filter',function($scope,$filter){   //依赖注入
+            $scope.data = [
+                {'id':1,name:'后盾网'},
+                {'id':2,name:'网易云'},
+                {'id':3,name:'慕课网'},
+                {'id':4,name:'麦子学院'},
+                {'id':5,name:'极客学院'},
+            ],
+            $scope.orderBy = function(){
+                $scope.data = $filter('orderBy')($scope.data,'id',true);    //改变为降序排序
+            }
+        }]);
+    </script>
+</html>

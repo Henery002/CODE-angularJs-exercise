@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 40课 callee与过滤器</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    <table border="1" cellspacing="0" cellpadding="2">
+        <tr>
+            <th ng-click="orderBy('id')">编号</th>
+            <th ng-click="orderBy('title')">名称</th>
+        </tr>
+        <tr ng-repeat="(k,v) in data">
+            <td>{{ v.id }}</td>
+            <td>{{ v.title }}</td>
+        </tr>
+    </table>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('myctrl',['$scope','$filter',function($scope,$filter){
+            $scope.data = [
+                {'id':1,title:'后盾网'},
+                {'id':2,title:'网易云'},
+                {'id':3,title:'慕课网'},
+                {'id':4,title:'麦子学院'},
+                {'id':5,title:'极客学院'},
+            ];
+            //排序方法，传参为需要排序的字段
+            $scope.orderBy = function(field){
+
+                //通过callee记录上一次排序的状态
+                if(arguments.callee[field] == 'undefined'){
+                    arguments.callee[field] == false;
+                }
+                //排序状态取反
+                arguments.callee[field] = !arguments.callee[field];
+
+                $scope.data = $filter('orderBy')($scope.data,field,arguments.callee[field]);
+            };
+        }]);
+    </script>
+</html>
