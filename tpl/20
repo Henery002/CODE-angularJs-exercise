@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 20课-全选/反选</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    <form>
+        <table border="1" cellpadding="2" cellspacing="0">
+            <tr>
+                <th>
+                    <label>
+                        <input type="checkbox" name="" ng-model='all'>
+                        <span ng-bind="all ? '取消' : '全选'"></span>
+                    </label>
+                </th>
+                <th>姓名</th>
+                <th>url</th>
+            </tr>
+            <tr ng-repeat='v in data'>sss
+                <td style="text-align: center;"><input type="checkbox" name="" ng-checked='all'></td>
+                <td>{{ v.name }}</td>
+                <td>{{ v.url }}</td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script>
+    var app = angular.module('app',[]);
+    app.controller('myctrl',['$scope',function($scope){
+        $scope.data = [
+            {'name':'后盾网','url':'houdunwang.com'},
+            {'name':'后盾人','url':'houdunren.com'}
+        ]
+    }]);
+</script>
+</html>

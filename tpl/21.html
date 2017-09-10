@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 21课 ng-model-options设置数据同步时机提交网站性能</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    <!-- 鼠标失去焦点更新 -->
+    <input type="text" name="" ng-model='title' ng-model-options="{'updateOn':'blur'}"><br>
+    <!-- 设定更新时间间隔 -->
+    <input type="text" name="" ng-model='title' ng-model-options="{debounce:1000}"><br>
+    {{ title }}
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('myctrl',['$scope',function($scope){
+
+        }]);
+    </script>
+</html>

@@ -99,10 +99,22 @@
 	例：见例19及解析
 
 <20> 超简单实现表单的全选与反选
+1.ng-checked 		//实现表单的全选/反选
+	例：20
 
 <21> ng-model-options 设置数据同步时机提交网站性能
+1.ng-model-options 		//
+	1.ng-model-options="{'updateOn':'blur'}"	//失焦时更新
+	2.ng-model-options="{debounce:350}"			//设置更新时间间隔
+	3.ng-model-options="{'updateOn':'default blur',debounce:{default:2000,blur:0}}"		/ /未失焦时2s后更新，失焦后立即更新（参数ddefault必须设置）
 
 <22> 通过ng-class动态改变样式类实例操作
+1.ng-class 				控制样式类，其值可接收json
+	ng-class="{red:true,font:false}" 		//表示应用red类名，不应用font类名
+	ng-class="'red'"	//表示直接应用red类名
+	1.ng-class-odd="{...}"
+	2.ng-class-even="{...}"
+	3....
 
 <23> 使用ng-style动态改变样式
 

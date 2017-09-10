@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS-22课 通过ng-class动态改变样式类实例操作</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<style type="text/css">
+    .red{ background-color: red;  }
+    .font{ font-size: 30px;  }
+
+    .lock{ background-color: #f89b38;color:#999; }
+    .blue{ color: #00f; }
+    .txtRight{ text-align: right; }
+    .txtLeft{ text-align: left; }
+</style>
+<body ng-app='app' ng-controller='myctrl'>
+    <!-- 1 -->
+    <div ng-class="{red:true,font:false}">
+        hdphp
+    </div>
+    <!-- 2 -->
+    <form>
+        <table border="1" cellpadding="2" cellspacing="0">
+            <tr>
+                <th>编号</th>
+                <th>品牌</th>
+                <th>状态</th>
+            </tr>
+            <tr ng-repeat='v in data' ng-class='{lock:v.status==0}' ng-class-odd="{txtLeft:true}" ng-class-even="{txtRight:true}">
+                <td>{{ v.id}}</td>
+                <td ng-class="{blue:v.id>=3}">{{ v.name }}</td>
+                <td>{{ v.status }}</td>
+            </tr>
+        </table>
+    </form>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('myctrl',['$scope',function($scope){
+            $scope.data = [
+                {id:1,'name':'小米','status':1},
+                {id:2,'name':'华为','status':0},
+                {id:3,'name':'VIVO','status':1},
+                {id:4,'name':'OPPO','status':1},
+                {id:5,'name':'三星','status':1},
+                {id:6,'name':'apple','status':0},
+            ]
+        }]);
+    </script>
+</html>
