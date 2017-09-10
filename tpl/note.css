@@ -117,8 +117,15 @@
 	3....
 
 <23> 使用ng-style动态改变样式
+1.ng-style 				//ngaular中的内联样式写法，接收json的值，使用驼峰命名
+	例：
+	1.<span ng-style="{color:'#f89b38',fontSize:'38px'}">网易云课堂</span>
+	2.<label>输入字号：<input type="text" ng-model="size"/>
+	  <span ng-style="{fontSize:size+'px'}">网易云课堂</span>
 
 <24> 事件处理指令讲解
+
+
 
 <25> AngularJS+flex弹性盒···.
 
