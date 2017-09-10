@@ -124,20 +124,50 @@
 	  <span ng-style="{fontSize:size+'px'}">网易云课堂</span>
 
 <24> 事件处理指令讲解
+1.ng-dblclick="func()" 			//双击
+2.ng-keydown
+3.ng-keypress
+4.ng-mousedown
+5.ng-mouseover
+6.ng-mouseup
+7.ng-mouseleave
+...
 
-
-
-<25> AngularJS+flex弹性盒···.
-
-<26> AngularJS+flex弹性··.
-
+/*小案例*/
+<25> AngularJS+flex弹性盒模型
+<26> AngularJS+flex弹性盒模型
 <27> AngularJS 弹性盒模型+bootStrap 开发微信菜单前端之根据微...
-
 <28> 弹性盒模型+boo··
-
 <29> 弹性盒模型+boo··
-
 <30> 弹性盒模型+bootStrap 开发微信菜单前端之使用fontawesome..
+1.使用图标库
+<31> 弹性盒模型+bootStrap 开发微信菜单前端之underscore与lodash..
+<32> 弹性盒模型+bootStrap 开发微信菜单前端之使用underscore..
+
+<33> 修复删除菜单时一级菜单选项不显示的问题
+
+<34> filter变量调节器分析与货币变量调节器处理
+
+<35> lowercase与uppercase过滤器使用
+
+<36> 使用limitTo过滤器截取字符
+
+<37>  使用date过滤器处理时间04:15
+
+<38> AngularJS开发宝典之orderBy数据
+
+<39> 控制器中如何使用顾虑器服务
+
+<40> callee与过滤器··
+
+<41> 使用$scope处理升降序
+
+<42> $scope.$watch监听数据变化
+
+
+
+
+
 
 
 
