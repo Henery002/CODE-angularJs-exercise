@@ -90,10 +90,37 @@
 5.ng-model 
 
 <18> ng-repeat 实例详细讲解与后盾人网站进行分析
+1.ng-repeat
 
 <19> ng-selected、ng-disabled、ng-readonly 实例讲解
+1.ng-selected 		//设置option标签是否被选中
+2.ng-disabled 		//无法提交表单
+3.ng-readonly 		//可以提交表单
+	例：见例19及解析
 
-<20> 
+<20> 超简单实现表单的全选与反选
+
+<21> ng-model-options 设置数据同步时机提交网站性能
+
+<22> 通过ng-class动态改变样式类实例操作
+
+<23> 使用ng-style动态改变样式
+
+<24> 事件处理指令讲解
+
+<25> AngularJS+flex弹性盒···.
+
+<26> AngularJS+flex弹性··.
+
+<27> AngularJS 弹性盒模型+bootStrap 开发微信菜单前端之根据微...
+
+<28> 弹性盒模型+boo··
+
+<29> 弹性盒模型+boo··
+
+<30> 弹性盒模型+bootStrap 开发微信菜单前端之使用fontawesome..
+
+
 
 
 

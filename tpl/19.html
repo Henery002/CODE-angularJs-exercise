@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS-19课</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    性别： <select>
+        <option value="">选择性别</option>
+        <option ng-value='1' ng-selected='user.sex==2'>男</option>
+        <option ng-value='2' ng-selected='user.sex==1'>女</option>
+    </select><br>
+    <label><input type="radio" name="male" ng-model='user.sex' ng-value='1'>男</label>
+    <label><input type="radio" name="female" ng-model='user.sex' ng-value='2'>女</label><br><br>
+
+    <input type="text" name="" disabled='disabled' value='disabled'>
+    <input type="text" name="" readonly='readonly' value="readonly">
+
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('myctrl',['$scope',function(){
+            // $scope.user = {'sex':1};
+        }]);
+
+
+        /*原理：
+            在input框选择的时候，会自动根据ng-model在scope上创建属性user并创建user的属性sex，其值为ng-value的1或2，然后scope的属性会被option读取，根据其值为1或2，触发selected
+        */
+
+    </script>
+</html>
