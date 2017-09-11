@@ -201,11 +201,12 @@
 1.arguments.callee
 	例：40.html
 
+<41> 使用$scope处理升降序
+1.法二实现升降序
+	例：41.html
 /*过滤去/变量调节器 end*/
 
-<41> 使用$scope处理升降序
-
-<42> $scope.$watch监听数据变化
+<42> $scope.$watch 监听数据变化
 
 
 

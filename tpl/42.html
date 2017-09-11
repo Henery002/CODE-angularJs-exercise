@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 42课 $scope.$watch()数据监听</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    标题：<input type="text" ng-model='news.title' />{{ error }}
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('myctrl',['$scope',function($scope){
+            $scope.news = {title:''};
+            $scope.$watch('news',function(newDate,oldDate){
+                console.log(newDate);
+                $scope.error = newDate.length >= 5 ? '长度不能超过5位' : '';
+            });
+        }]);
+    </script>
+</html>
