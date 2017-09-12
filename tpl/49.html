@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 49课 自定义指令replace属性详解</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <my-cms></my-cms>           <!-- E -->
+    <div my-cms></div>          <!-- A -->
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('myCms',[function(){
+            return {
+                restrict:'AE',
+                template:function(elem,attr){
+                    return "<span>后盾网视频教程</span>";
+                },
+                //true表示将template返回的span标签替换掉视图中的 my-cms自定义标签；
+                //false表示将template返回的span标签嵌入到视图中的自定义标签my-cms中
+                //当自定义指令作为 A 属性使用时，若replace为 true ，则替换后的标签仍有自定义的属性 my-cms
+                replace:true
+            }
+        }]);
+
+    </script>
+</html>

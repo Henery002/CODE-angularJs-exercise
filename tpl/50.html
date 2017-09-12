@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 50课 自定义指令transclude与templateUrl属性详解</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <!-- 该自定义指令带有了 transclude 属性，
+    则其所包裹的内容可以访问指令外部的作用于，
+    即可以将其插入到模板文件views/mycms.html中的任意位置 -->
+    <div my-cms>原来的内容</div>
+
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('myCms',[function(){
+            return {
+                restrict:'AE',
+                replace:true,
+                //创建包含其他元素的指令，transclude和templateUrl配合使用
+                transclude:true,
+                templateUrl:'../views/mycms.html'
+            }
+        }]);
+    </script>
+</html>

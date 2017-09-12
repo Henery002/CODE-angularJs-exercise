@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 46课 </title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div my-cms></div>               <!-- A：attribute -->
+    <my-cms></mycms>                 <!-- E：element -->
+    <div class='my-cms'></div>       <!-- 无法显示 -->
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('myCms',[function(){      //通过对指令名使用驼峰命名法，定义指令的前缀，即：myCms  ==>  my-cms
+            return {
+                restrict:'AEC',
+                template:'后盾网CMS系统'
+            }
+        }]);
+
+    </script>
+</html>

@@ -231,38 +231,79 @@
 		});
 
 <45> SPA应用与自定义指令使用场景应用场景分析
+1.SPA : Single Page Application 简介
 
 <46> 自定义指令directive的restrict属性说明
+1.restrict:'AEC',			//A:attribute  E:element  C:class
+	例：46.html
+		app.directive('myCms',[function(){
+			restrict:'AE',
+			tempplate:'...'			//1.template后面直接接字符串
+		}]);
 
 <47> 自定义指令名称的标准规范
+1.通过在指令中对指令名使用驼峰命名法定义指令的前缀，在视图中使用前缀指令。
+	例：47.html
+		<div my-cms></div>
+		app.directive('myCms',[function(){return{restrict:'AEC',template:'...'}}]);
 
 <48> 自定义指令template函数式操作实例讲解
+1.指令中template接收函数表达式，传2个形参：elem,attr
+	例：48.html
+		app.directive('myCms',[function(){
+			return {
+				restrict:'AE',
+				template:function(elem,attr){
+					return "<span>"+ $(elem).html() +"</span>"
+				}
+			}
+		}]);
 
 <49> 自定义指令replace属性详解
+1.replace:true 				//表示将template返回的span标签替换掉视图中的自定义标签 <my-cms></my-cms> 
+2.replace:false 			//表示将template返回的span标签嵌入到视图中的自定义标签 <my-cms></my-cms> 中
+							//当自定义指令作为 restrict:A 使用时，若replace为 true ，则替换后的标签仍有自定义的属性 my-cms
+	例：49.html
 
 <50> 自定义指令transclude与templateUrl属性详解
+1.transclude 				//创建包含其他元素的指令。
+	//transclude使带有这个选项的指令所包裹的内容能够访问指令外部的作用域。也就是说可以把带有该选项的指令插入到模板文件中的任意位置。见例50.html
+	例：50.html、views/mycms.html
+		详解见html内容
+
 
 <51> controller控制器scope父子集作用域实例讲解一
 
+
 <52> controller控制器scope父子集作用域实例讲解二
+
 
 <53> 指令scope作用域分析一
 
+
 <54> scope隔离作用域之@单向文本绑定
+
 
 <55> scope隔离作用域之=双向文本绑定
 
+
 <56> scope隔离作用域之=&调用父作用域中函数
+
 
 <57> 指令directive的controller属性
 
+
 <58> 指令directive的link属性详解
+
 
 <59> tab面板组件的指令实现
 
+
 <60> 服务server应用分析与使用场景
 
+
 <61> 使用$scope.$apply进行数据脏检查
+
 
 
 

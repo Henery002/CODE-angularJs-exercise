@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 46课 </title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div mycms></div>               <!-- A：attribute -->
+    <mycms></mycms>                 <!-- E：element -->
+    <div class='mycms'></div>       <!-- C：class -->
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        //定义一个 mycms 指令
+        app.directive('mycms',[function(){
+            return {
+                restrict:'AEC',
+                template:'后盾网开源CMS'
+            }
+        }]);
+
+    </script>
+</html>

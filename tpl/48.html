@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 48课 </title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>         
+    <div my-cms class='red'>后盾网教程</div>
+</body>
+    <script>
+        var module = angular.module('app',[]);
+        module.directive('myCms',[function(){
+            return {
+                restrict:'AEC',
+                template:function(elem,attr){
+                    // console.log(elem);          //输出一个数组：[div.red]
+                    // console.log(attr);          //输出一个对象：{ $$element:[div.red], $attr:{myCms:"my-cms",class:"class"}, class:"red", myCms:"" }
+                    // return elem.html();         //返回的内容即为显示的内容
+                    // return $(elem).html();      //法二：使用jquery写法
+                    return "<span style='color:"+ attr['class'] +"'>"+ $(elem).html() +"</span>";
+                }
+            }
+        }]);
+
+    </script>
+</html>
