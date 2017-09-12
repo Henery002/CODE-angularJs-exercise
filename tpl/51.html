@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 51课 controller控制器scope父子集作用域实例讲解一</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <!-- 作用域的继承与隔离 -->
+    <div ng-controller='ctrl1'>
+        <span>{{ name }}</span>
+        <input type="text" name="" ng-model='name'>
+        <div ng-controller='ctrl2'>
+            <span>{{ name }}</span>
+            <input type="text" name="" ng-model='name'>
+        </div>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('myCms',[function(){
+
+        }]);
+        app.controller('ctrl1',['$scope',function($scope){
+            $scope.name = '网易云课堂';
+        }]);
+        app.controller('ctrl2',['$scope',function($scope){
+            // $scope.name = '慕课网';         //若把子作用域中的变量注释掉，则子作用域会往父作用域中找同名变量
+        }]);
+
+    </script>
+</html>

@@ -4,13 +4,9 @@
 【学习目录】：[2017-09-05 ~]
 
 <01> 什么是angular及与jquery实例对比分析
-
 <02> angularjs开发宝典之模块、视图模型、控制器、双向数据绑定模型
-
 <03> angularjs开发宝典之MVVM双向数据绑定
-
 <04> 声明模块与控制器规范与依赖注入分析
-
 <05> [20170906]$scope的基本使用方法：
 1.ng-app
 2.ng-controller
@@ -22,7 +18,6 @@
 2.ng-cloak	解决闪屏问题
 
 <07> ng-model 在表单中双向绑定实例分析讲解
-
 <08> ng-value 的使用实例讲解
 1.ng-value 指令。用于input中，可接受表达式，区别于 ng-model
 	
@@ -30,7 +25,6 @@
 1.ng-show 
 
 <10> 实例讲解 angular 操作chexkbox复选框
-
 <11> 实例讲解 angular 操作 select 列表框
 1.ng-options    ==>    <select ng-options="v.value as v.name for v in data" ng-model="city">...</select>
 
@@ -247,7 +241,7 @@
 		<div my-cms></div>
 		app.directive('myCms',[function(){return{restrict:'AEC',template:'...'}}]);
 
-<48> 自定义指令template函数式操作实例讲解
+<48> 【**】自定义指令template函数式操作实例讲解
 1.指令中template接收函数表达式，传2个形参：elem,attr
 	例：48.html
 		app.directive('myCms',[function(){
@@ -259,24 +253,28 @@
 			}
 		}]);
 
-<49> 自定义指令replace属性详解
+<49> 【**】自定义指令replace属性详解
 1.replace:true 				//表示将template返回的span标签替换掉视图中的自定义标签 <my-cms></my-cms> 
 2.replace:false 			//表示将template返回的span标签嵌入到视图中的自定义标签 <my-cms></my-cms> 中
 							//当自定义指令作为 restrict:A 使用时，若replace为 true ，则替换后的标签仍有自定义的属性 my-cms
 	例：49.html
 
-<50> 自定义指令transclude与templateUrl属性详解
+<50> 【***】自定义指令transclude与templateUrl属性详解
 1.transclude 				//创建包含其他元素的指令。
 	//transclude使带有这个选项的指令所包裹的内容能够访问指令外部的作用域。也就是说可以把带有该选项的指令插入到模板文件中的任意位置。见例50.html
 	例：50.html、views/mycms.html
 		详解见html内容
 
-
 <51> controller控制器scope父子集作用域实例讲解一
-
+1.作用域的继承与隔离
+2.作用域的继承但不隔离
 
 <52> controller控制器scope父子集作用域实例讲解二
-
+1.总结：
+	在父子控制器中，
+	==>若使用的变量是标量(即非对象类型变量)，则在使用 ng-model 时，子控制器会把父控制器中的标量复制一份，即【隔离】，子控制器中数据改变不会影响父级；
+	==>若使用的变量是引用类型(如对象)，则在使用 ng-model 时，子级不会复制父级中的变量，即【继承】，子级中改变数据会同步影响到父级。
+	例：Github源码 53.html
 
 <53> 指令scope作用域分析一
 
