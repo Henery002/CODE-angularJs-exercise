@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 53课 指令scope作用域分析一</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    <div>
+        {{ name }} <input type="text" name="" ng-model='name'><br>
+        <hr>
+        <my-cms></my-cms><br>
+        <hr>
+        <my-cms></my-cms>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('myCms',[function(){
+            return {
+                restrict:'AE',
+                // template:'{{ name }}',
+                template:'{{ name }} <br><input type="text" ng-model="name"/>',
+                scope:true      // true / false / {}        
+                //scope取值为false时，默认情况。指令中的取值继承于控制器，即没有独立的scope作用域
+                //scope取值为true时，指令的初始值会继承控制器中的数据，且控制器中的数据会影响指令。但是指令的更新不会再影响控制器。即ng会为指令单独配置独立的scope。
+                //scope取值为{}时，各个指令完全独立，不会再继承控制器（包括初始值也不会继承）
+            } 
+        }]);
+        app.controller('myctrl',['$scope',function($scope){
+            $scope.name = '慕课网';
+        }]);
+    </script>
+</html>

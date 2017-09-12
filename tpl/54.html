@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 54课 scope隔离作用域之@单向文本绑定</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    <input type="text" name="" ng-model='color'><br>        <!-- 起到中间方法的作用 -->
+    <div mycms my-color='{{ color }}'></div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('mycms',[function(){
+            return {
+                restrict:'AE',
+                template:"{{ name }} <span style='color:{{ color }}'>网易云课堂</span>",        
+                //{{name}}不生效，说明启用scope属性后，指令的变量与控制器的变量发生了隔离。
+                //但是若要在指令中使用控制器中的变量，可以使用中间方法，即为指令设置属性my-color的方式间接获取控制器的值，然后再把指令的属性my-color的文本值传递给scope变量。实现单向数据绑定。
+                scope:{color:'@myColor'}
+            }
+        }]);
+        app.controller('myctrl',['$scope',function($scope){
+            $scope.color = 'red';
+            $scope.name = '慕课网';
+        }]);
+    </script>
+</html>
