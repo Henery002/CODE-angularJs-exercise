@@ -207,23 +207,62 @@
 /*过滤去/变量调节器 end*/
 
 <42> $scope.$watch 监听数据变化
+1.字符串型：(传2个参数)
+	$scope.title = '';
+	$scope.$watch('title',function(newData,oldData){
+		console.log(newData,newData.length);
+	});
+2.对象型：(传3个参数)
+	$scope.data = { title:'' };
+	$scope.$watch('data',function(newData,oldData){
+		console.log(newData,newData.title.length);
+	},true);
 
+<43> 使用$watch与$filter过滤器制作数据筛选
+	例：43.html
 
+<44> 自定义过滤器之手机号加星过滤器实例
+	例：44.html
+		var module = angular.module('app',[]);
+		module.filter('truncate',function(){	//truncate过滤器为 截取
+			return function(){
+				return ...;
+			}
+		});
 
+<45> SPA应用与自定义指令使用场景应用场景分析
 
+<46> 自定义指令directive的restrict属性说明
 
+<47> 自定义指令名称的标准规范
 
+<48> 自定义指令template函数式操作实例讲解
 
+<49> 自定义指令replace属性详解
 
+<50> 自定义指令transclude与templateUrl属性详解
 
+<51> controller控制器scope父子集作用域实例讲解一
 
+<52> controller控制器scope父子集作用域实例讲解二
 
+<53> 指令scope作用域分析一
 
+<54> scope隔离作用域之@单向文本绑定
 
+<55> scope隔离作用域之=双向文本绑定
 
+<56> scope隔离作用域之=&调用父作用域中函数
 
+<57> 指令directive的controller属性
 
+<58> 指令directive的link属性详解
 
+<59> tab面板组件的指令实现
+
+<60> 服务server应用分析与使用场景
+
+<61> 使用$scope.$apply进行数据脏检查
 
 
 

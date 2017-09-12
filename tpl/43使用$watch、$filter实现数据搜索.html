@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 43课 使用$watch、$filter过滤器实现数据筛选</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+
+    搜索：<input type="text" ng-model='search'/><br><br>
+    <table border="1" cellspacing="0" cellpadding="2">
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+        </tr>
+        <tr ng-repeat="(k,v) in lists">
+            <td>{{ v.id }}</td>
+            <td>{{ v.title }}</td>
+        </tr>
+    </table>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('myctrl',['$scope','$filter',function($scope,$filter){
+            $scope.data = [
+                {'id':1,title:'后盾网'},
+                {'id':2,title:'网易云'},
+                {'id':3,title:'慕课网'},
+                {'id':4,title:'麦子学院'},
+                {'id':5,title:'极客学院'},
+            ];
+            //临时数据用于显示
+            $scope.lists = $scope.data;
+            //使用$watch监听数据发生变化 
+            $scope.$watch('search',function(n,o){
+                $scope.lists = $filter('filter')($scope.data,n);
+            });
+        }]);
+    </script>
+</html>

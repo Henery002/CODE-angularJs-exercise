@@ -8,16 +8,27 @@
     <script type="text/javascript" src='../js/jquery.min.js'></script>
 </head>
 <body ng-app='app' ng-controller='myctrl'>
-    标题：<input type="text" ng-model='news.title' />{{ error }}
+    <!-- 字符串 -->
+    <!-- 标题：<input type="text" ng-model='title' /> {{ error }} -->
+    <!-- 对象 -->
+    标题：<input type="text" ng-model='news.title'> {{ error }}
 </body>
     <script>
         var app = angular.module('app',[]);
         app.controller('myctrl',['$scope',function($scope){
-            $scope.news = {title:''};
+            //字符串型数据
+            // $scope.title = '';
+            // $scope.$watch('title',funtion(newDate,oldDate){
+                // console.log(newDate);
+                // $scope.error = newDate.length >= 5 ? '长度不能超过5位' : '';
+            // });
+            
+            //对象型数据
+            $scope.news = {'title':''};
             $scope.$watch('news',function(newDate,oldDate){
                 console.log(newDate);
-                $scope.error = newDate.length >= 5 ? '长度不能超过5位' : '';
-            });
+                $scope.error = newDate.title.length >= 5 ? '长度不能超过5位' : '';
+            },true);
         }]);
     </script>
 </html>

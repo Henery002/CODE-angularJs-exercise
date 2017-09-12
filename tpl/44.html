@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 44课自定义过滤器之手机加星过滤器实例-过滤器扩展功能</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body>
+    <div ng-app='app' ng-controller='ctrl'>
+        <table>
+            <tr>
+                <th>编号</th>
+                <th>名称</th>
+                <th>电话</th>
+            </tr>
+            <tr ng-repeat='(k,v) in data'>
+                <td>{{ v.id }}</td>
+                <td>{{ v.name }}</td>
+                <td>{{ v.tel | truncate:5 }}</td>               <!-- 法二：在js中定义了过滤器以及截取的长度后，此处还可以修改要截取的长度：truncate:6 -->
+            </tr>
+        </table>
+    </div>
+</body>
+<script type="text/javascript">
+    angular.module('app',[]).
+    controller('ctrl',['$scope','$filter',function($scope,$filter){
+        $scope.data = [
+            {id:1,name:'后盾网',tel:'13576890021'},            //此处tel的数据类型必须为字符串，不能为数字型
+            {id:2,name:'网易云',tel:'13576893565'},
+            {id:3,name:'极客学院',tel:'18552276719'},
+            {id:4,name:'慕课网',tel:'15575562312'},
+        ]
+    }]).
+    filter('truncate',function(){               //注入过滤器
+        return function(tel,length){
+            length = length ? length : 3;       //法一：定义要截取的字符串默认长度
+            return tel.substr(0,tel.length-length) + new String('*').repeat(length);       //字符串tel截取时，必须是字符串型，不能为数字型
+        };
+    })
+</script>
+</html>
