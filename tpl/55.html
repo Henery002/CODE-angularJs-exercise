@@ -3,24 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>angularJS- 55课 scope隔离作用域之=单向文本绑定</title>
+    <title>angularJS- 55课 scope隔离作用域之=双向文本绑定</title>
     <script src="../js/angular.js"></script>
     <script type="text/javascript" src='../js/jquery.min.js'></script>
 </head>
 <body ng-app='app' ng-controller='myctrl'>
-    <input type="text" name="" ng-model='color'><br>        <!-- 起到中间方法的作用 -->
+    <input type="text" name="" ng-model='color'><br>
     <hr>
-    <div mycms my-color='color'></div>
+    <div mycms my-color='color'></div>              <!-- 注意区别此处 -->
 </body>
     <script>
         var app = angular.module('app',[]);
         app.directive('mycms',[function(){
             return {
                 restrict:'AE',
-                template:"{{ name }} <span style='color:{{ color }}'>网易云课堂</span> <input type='text' ng-model='color'/>",        
-                //{{name}}不生效，说明启用scope属性后，指令的变量与控制器的变量发生了隔离。
-                //但是若要在指令中使用控制器中的变量，可以使用中间方法，即为指令设置属性my-color的方式间接获取控制器的值，然后再把指令的属性my-color的文本值传递给scope变量。实现单向数据绑定。
-                scope:{color:'=myColor'}
+                template:"{{ name }} <span style='color:{{ color1 }}'>网易云课堂</span> <input type='text' ng-model='color1'/>",
+                //通过 = 实现双向数据绑定。属性my-color的值会赋值给指令的 color1 变量；同时指令的color1变量也会直接传递给控制器
+                scope:{color1:'=myColor'}   // = 实现双向数据绑定之后，scope相当于取值 true
             }
         }]);
         app.controller('myctrl',['$scope',function($scope){

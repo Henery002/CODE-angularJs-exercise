@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 56课 scope隔离作用域之&调用父作用域中的函数</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='myctrl'>
+    <div mycms my-color='callback()'></div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('mycms',[function(){
+            return {
+                restrict:'AE',
+                template:"<span>{{ color1() }}</span>",
+                scope:{color1:'&myColor'}               //作用类同之前的 = ，只是&用来调用$scope中的方法，而非变量
+            }
+        }]);
+        app.controller('myctrl',['$scope',function($scope){
+            // $scope.color = 'red';
+            $scope.callback = function(){
+                return '后盾网向军老师';
+            }
+        }]);
+    </script>
+</html>

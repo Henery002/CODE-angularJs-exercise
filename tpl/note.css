@@ -290,14 +290,16 @@
 		}]);
 
 <54> scope隔离作用域之@单向文本绑定
-1.scope:{color:'@myColor'}			//
+1.scope:{color :'@myColor'}			//
 	例：54.html 详解
 
 <55> scope隔离作用域之=双向文本绑定
-
+1.scope:{color1:"=myColor"}			//
+	例：55.html 详解
 
 <56> scope隔离作用域之=&调用父作用域中函数
-
+1.scope:{color1:'&myColor'}			//区别于 = ，用来调用$scope中的方法，而非变量
+	例：56.html 详解
 
 <57> 指令directive的controller属性
 
