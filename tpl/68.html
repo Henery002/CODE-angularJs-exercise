@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 67课 $http服务请求缓存操作减少服务器压力加快页面展示</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+            <tr ng-repeat='v in data'>
+                <td>{{ v.name }}</td>
+                <td>{{ v.URL }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('ctrl',['$scope','$http',function($scope,$http){
+            //get请求
+            $http.get('../views/66.php',{cache:true}).then(
+                function(response){
+                    $scope.data = response.data;
+                    console.log(111);
+                },
+                function(response){
+                    console.log(response);
+                }
+            );
+            //post请求
+            /*
+            $http.post('../views/66.php',{id:1,cache:true}).then(
+                function(response){
+                    $scope.data = response.data;
+                    console.log(222);
+                },
+                function(response){
+                    console.log(response);
+                }
+            )
+            */
+        }]);
+    </script>
+</html>

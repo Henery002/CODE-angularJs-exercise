@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 66课 $http服务获取后台数据</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+            <tr ng-repeat='v in data'>
+                <td>{{ v.name }}</td>
+                <td>{{ v.URL }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('ctrl',['$scope','$http',function($scope,$http){     //注入 $http 服务
+            $http({
+                method:'get',
+                url:'../views/66.php'
+            }).then(function(response){
+                $scope.data = response.data;
+            },function(response){
+                console.log(response);
+            });
+        }]);
+    </script>
+</html>

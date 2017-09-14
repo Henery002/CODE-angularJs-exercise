@@ -298,6 +298,7 @@
 	例：55.html 详解
 
 <56> scope隔离作用域之=&调用父作用域中函数
+<56> scope隔离作用域之&调用父作用域中函数
 1.scope:{color1:'&myColor'}			//区别于 = ，用来调用$scope中的方法，而非变量
 	例：56.html 详解
 
@@ -365,13 +366,17 @@
 	例：65.html 详解
 
 <66> $http服务获取后台数据
-
+1.$http({method:"post/get",url:"66.php"}).then(function(response){...},function(response){...});  //需要在控制器中注入 $http 服务
+	例：66.html 
 
 <67> $http服务请求缓存操作减少服务器压力加快页面展示0
-
+1.$http({method:'post/get',url:'66.php',cache:true}).then(function(response){...},function(response){...});
+	例：67.html 							//减少相同数据的请求次数
 
 <68> $http服务简写操作
-
+1.$http.get('66.php',{cache:true}).then(function(response){...},function(response){...});
+2.$http.post('66.php',{id:12,cache:true}).then(function(response){...},function(response){...});
+	例：68.html
 
 <69> $http服务之后台接收POST数据的几种方式
 
