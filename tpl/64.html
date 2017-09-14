@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 64课 $sce服务安全的处理html数据</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='ctrl'>
+    <!-- 1。 -->
+    <span ng-bind='subname'></span>
+    <hr>  
+    <!-- 2.出于安全考虑，ng不让该数据在页面正常显示。所以需要使用 $sce 服务使其正常显示 -->
+    <span ng-bind-html='name'></span>
+    <hr>
+    <!-- 3.定义了过滤器之后，用过滤器处理一下 -->
+    <span ng-bind-html='title | trustHtml'></span>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('ctrl',['$scope','$sce',function($scope,$sce){      //注入 $sce 服务
+            //1.视图中无法正常解析h1标签
+            $scope.subname = '<h1>网易云课堂</h1>';                        
+            //2.使用 $sce 服务后可正常解析
+            $scope.name = $sce.trustAsHtml('<h1>网易云课堂</h1>');         
+            //3.如果定义了过滤器，可直接定义原数据值
+            $scope.title = '<h2 style="color:#f0f;">网易云课堂</h2>';
+        }]);
+        //可定义一个过滤器，不用每次再使用 $sce.trustAsHtml() 方法
+        app.filter('trustHtml',['$sce',function($sce){
+            return function(data){
+                return $sce.trustAsHtml(data);
+            }
+        }]);
+    </script>
+</html>

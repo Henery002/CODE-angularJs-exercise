@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 65课 $$cacheFactory的缓存实例讲解</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl1'>
+        <span>{{ data.name }}</span>
+    </div>
+    <hr>
+    <div ng-controller='ctrl2'>
+        <span>{{ name }}</span>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('ctrl1',['$scope','$cacheFactory',function($scope,$cacheFactory){         //注入缓存服务
+            //需要先定义一个数据表
+            var obj = $cacheFactory('hdphp');                   //表
+            //使用 put 存数据
+            obj.put('web',{id:2,name:'后盾网视频教程'});        //表记录
+            console.log(obj.get('web'));
+            console.log(obj.get('web').name);
+            //使用 get 取数据
+            $scope.data = obj.get('web');
+            //使用 remove() 删除数据
+            // obj.remove('web');
+            console.log(obj.get('web'));
+            //使用 removeAll() 全部删除
+            // obj.removeAll();
+            console.log(obj.get('web'));
+            //使用 destory() 清除表空间
+            // obj.destory();
+            console.log(obj.get('web'));        //已被删除，所以会报错
+        }]);
+        /*TODO 不同控制器中互相使用缓存数据*/
+        app.controller('ctrl2',['$scope','$cacheFactory',function($scope,$cacheFactory){
+            //获取ctrl1中的数据表
+            var obj2 = $cacheFactory.get('hdphp');
+            $scope.name = obj2.get('web').id;
+        }]);
+    </script>
+</html>

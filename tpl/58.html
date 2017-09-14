@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 58课 指令directive的link属性详解</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <my-cms title='网易云课堂' bgcolor='red' fontcolor='#fff'></my-cms>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('myCms',[function(){
+            return {
+                restrict:'E',
+                // replace:true,
+                // template:'...',
+                // templateUrl:'../views/58.html',
+                scope:{
+                    title:"@"
+                },
+                //在link属性中操作DOM
+                link:function(scope,elem,attr){
+                    console.log(attr);
+                    console.log(typeof(attr['bgcolor']));       //string
+                    $(elem).css(
+                        {
+                            backgroundColor:attr['bgcolor'],
+                            fontColor:attr['fontcolor'],
+                            color:attr['fontcolor']
+                        }
+                    ).html(attr['title']);
+                }
+            }
+        }]);
+
+    </script>
+</html>

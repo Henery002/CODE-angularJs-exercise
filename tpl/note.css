@@ -1,5 +1,5 @@
 /*
-	TODO 网易云课堂后盾网 angularJS教程
+*	TODO 网易云课堂后盾网 angularJS教程
 */
 【学习目录】：[2017-09-05 ~]
 
@@ -127,7 +127,7 @@
 7.ng-mouseleave
 ...
 
-/*小案例*/
+/*TODO 小案例*/
 <25> AngularJS+flex弹性盒模型
 <26> AngularJS+flex弹性盒模型
 <27> AngularJS 弹性盒模型+bootStrap 开发微信菜单前端之根据微...
@@ -147,7 +147,7 @@
 
 <33> 修复删除菜单时一级菜单选项不显示的问题
 
-/*过滤器/变量调节器*/
+/*TODO 过滤器/变量调节器*/
 <34> filter变量调节器分析与货币变量调节器处理
 1.currency 				//货币变量调节器  --  对数据进行二次处理、
 	例：{{ price | currency:'¥':2 }}  		//表示对price数值四舍五入按价格格式取值
@@ -198,7 +198,6 @@
 <41> 使用$scope处理升降序
 1.法二实现升降序
 	例：41.html
-/*过滤去/变量调节器 end*/
 
 <42> $scope.$watch 监听数据变化
 1.字符串型：(传2个参数)
@@ -223,6 +222,7 @@
 				return ...;
 			}
 		});
+/*过滤去/变量调节器 end*/
 
 <45> SPA应用与自定义指令使用场景应用场景分析
 1.SPA : Single Page Application 简介
@@ -301,21 +301,96 @@
 1.scope:{color1:'&myColor'}			//区别于 = ，用来调用$scope中的方法，而非变量
 	例：56.html 详解
 
-<57> 指令directive的controller属性
+<57> 【**】指令directive的controller属性
+1.controller :['$scope',function($scope){
+  	$scope.name = '...';
+  }],								//通过在指令中定义控制器controller属性，为该指令中使用的模板文件定义作用域
+  templateUrl:'../views/58.html'
+  	例：57.html
 
+<58> 【**】指令directive的link属性详解
+1.link:function(scope,elem,attr){
+		console.log(elem,attr);
+		...
+	}								//在指令中定义link属性，用来操作DOM
+	例：58.html
 
-<58> 指令directive的link属性详解
+<59> [实例]tab面板组件的指令实现
+1.scope:{},  	//scope:{data:'='},
+1.controller:['$scope',function($scope){...}],
+2.link:function(scope,elem,attr){...}
+	以上几个关于指令的属性的综合实例。分别实现：
+	1.模板文件引用指令中控制器里的作用域的数据;
+	2.模板文件引用父级作用域(即直接使用控制器)的数据
+	例：59.html  详解
 
-
-<59> tab面板组件的指令实现
-
-
+/*TODO 服务*/
 <60> 服务server应用分析与使用场景
+1.sever服务的概念
+
+<61> 【**】使用$scope.$apply进行数据脏检查
+1.$scope.$apply();					//当操作不在angular中绑定时(即不在scope作用域上定义数据)，，通过使用 $apply() 方法执行数据脏检查使视图中的数据发生同步更新
+	例：61.html
+
+<62> $timeout与$interval实际使用场景分析与实例讲解
+1.var timer1 = $timeout(function(){...});		//angular提供的原生定时器服务
+2.var timer2 = $interval(function(){...});		
+3.$timeout.cancel(timer1);						//清除定时器
+4.$interval.cancel(timer2);
+	js原生的定时器无法同步视图数据实现更新(除非使用$apply()数据脏检查)
+	例：62.html
+
+<63> $window服务的实例讲解
+1.$window.prompt();					//需要在控制器中注入服务 $window
+2.$window.alert();
+3.$window.confirm();
+4.$window.document.body.clientHeight;
+...
+	例：63.html
+
+<64> 【***】$sce服务安全的处理html数据
+1.$sce.trustAsHtml(...);			//需要在控制器中注入服务 $sce
+2.trustHtml 						//在定义了过滤器之后，在视图中使用过滤器使视图正确解析scope中变量的值
+	例：<span ng-bind-html=" title | trustHtml "></span>
+	例：64.html 详解
+
+<65> $cacheFactory的缓存实例讲解
+1.var obj = $cacheFactory('hdphp');			//创建数据表
+1.obj.put(...);								//存数据
+2.obj.get(...);								//取数据
+3.obj.remove(...);							//删除数据
+4.obj.removeAll();							//删除所有数据
+5.obj.destory();							//销毁表空间
+6.var obj2 = $cacheFactory.get('hdphp');	//不同控制器之间调用缓存的表数据
+	例：65.html 详解
+
+<66> $http服务获取后台数据
 
 
-<61> 使用$scope.$apply进行数据脏检查
+<67> $http服务请求缓存操作减少服务器压力加快页面展示0
 
 
+<68> $http服务简写操作
 
+
+<69> $http服务之后台接收POST数据的几种方式
+
+
+<70> spa项目的server层分析与使用factory创建服务
+
+
+<71> 多个控制器共享服务server数据的处理实例
+
+
+<72> 使用service创建自定义服务
+
+
+<73> SPA应用的路由使用分析
+
+
+<74> uiRouter默认路由规则操作
+
+
+<75> uiRouter链接上实例路由跳转方式
 
 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 59课 tab面板组件的指令实现</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='ctrl'>
+    <my-tab title='网易云课堂' bgcolor='red' fontcolor='#fff'></my-tab>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('myTab',[function(){
+            return {
+                restrict:'E',
+                replace:true,
+                templateUrl:'../views/59.html',
+                // scope:{},		//一：当在指令中使用控制器时，scope属性不需传值
+                scope:{data:'='},	//二：当模板文件直接使用外层控制器时，scope属性需要使用 = 来引用外层控制器（父级作用域）的数据
+                link:function(scope,elem,attr){
+                	$(elem).on('click','a',function(){
+                		$(this).addClass('active').siblings('a.active').removeClass('active');
+                		$(elem).find('.lists').eq($(this).index()-1).show().siblings('.lists').hide();
+                	});
+                },
+                /*一：当在指令中使用控制器时*/
+                /*controller:['$scope',function($scope){
+                	$scope.data = [
+                		{
+                			id:1,
+                			title:'南京',
+                			data:[
+                				{
+                					id:1,
+                					title:'玄武区'
+                				},
+                				{
+                					id:2,
+                					title:'栖霞区'
+                				}
+                			]
+                		},
+                		{
+                			id:2,
+                			title:'苏州',
+                			data:[
+                				{
+                					id:1,
+                					title:'姑苏区'
+                				},
+                				{
+                					id:2,
+                					title:'相城区'
+                				}
+                			]
+                		}
+                	];
+                }]*/
+            }
+        }]);
+        /*二：当模板文件直接使用外层控制器中的数据（即引用父级作用域数据）时*/
+        app.controller('ctrl',['$scope',function($scope){
+        	$scope.data = [
+        		{
+        			id:1,
+        			title:'南京',
+        			data:[
+        				{
+        					id:1,
+        					title:'玄武区'
+        				},
+        				{
+        					id:2,
+        					title:'栖霞区'
+        				}
+        			]
+        		},
+        		{
+        			id:2,
+        			title:'苏州',
+        			data:[
+        				{
+        					id:1,
+        					title:'姑苏区'
+        				},
+        				{
+        					id:2,
+        					title:'相城区'
+        				}
+        			]
+        		}
+        	];
+        }]);
+
+    </script>
+</html>

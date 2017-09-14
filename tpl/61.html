@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 61课 使用$scope.$apply进行数据脏检查</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='ctrl'>
+    <div>{{ name }}</div><br>
+    <button class='btn' ng-click='callback()'>点击更改</button><br><br> 
+    <hr>
+    <button id='btn2'>JQUERY处理</button>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('ctrl',['$scope',function($scope){
+            $scope.name = '后盾网';
+            $scope.callback = function(){
+                $scope.name = '改为慕课网';
+            };
+            //不同于直接在$scope上定义变量或函数，当动作没在angular中绑定时，通过$apply()方法执行数据脏检查，使视图中的数据发生同步更新
+            $('#btn2').click(function(){
+                console.log($scope.name);
+                $scope.name = '第二次改变';
+                $scope.$apply();        //若不使用 $apply() 方法执行脏检查，则点击事件无法使$scope.name同步实时更新视图数据
+            });
+        }]);
+
+    </script>
+</html>

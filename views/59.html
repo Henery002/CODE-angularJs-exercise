@@ -1,0 +1,13 @@
+<div class="hd-tab" data='data'>	<!-- data属性在情况二下使用 -->
+	<style type="text/css">
+		.hd-tab a{ padding: 6px 10px;border:solid 2px #aaa;text-decoration: none;display: inline-block;  }
+		.hd-tab a.active{ background-color: #aaa;color:#fff; }
+		.hd-tab div.lists{ border:solid 2px #aaa;padding:20px;width:300px;height: 200px;margin-top: -2px; }
+	</style>
+	<a href="#list1" ng-class='{active:$first}' ng-repeat='(k,v) in data'>{{ v.title }}</a>
+	<div class="lists" id='list1' ng-repeat='v in data' ng-style='{ display:$first ? "block" : "none" }'>
+		<ul>
+			<li ng-repeat='m in v.data'>{{ m.title }}</li>
+		</ul>
+	</div>
+</div>

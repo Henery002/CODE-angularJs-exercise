@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 57课 指令directive中的controller属性</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='ctrl'>
+    <my-cms></my-cms>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.directive('myCms',[function(){
+            return {
+                restrict:'E',
+                replace:true,
+                templateUrl:'../views/57.html',
+                //指令中的控制器属性，用于在所用模板中调取数据
+                controller:['$scope',function($scope){
+                    $scope.data = [
+                        {id:1,name:'慕课网'},
+                        {id:2,name:'网易云'},
+                        {id:3,name:'极客学院'},
+                    ];
+                }]
+            }
+        }]);
+        app.controller('ctrl',['$scope',function($scope){
+            $scope.name = '外层控制器';
+        }]);
+
+    </script>
+</html>

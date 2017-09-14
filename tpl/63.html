@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 63课 $window服务的实例讲解</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='ctrl'>
+    <a href='' ng-click='get()'>GET</a>
+    <p>{{ msg }}</p>
+    <hr>
+    <button ng-click='getClientHeight()'>获取窗口高度</button>
+    窗口的高度是：{{ clientHeight }}
+    <hr>
+    <button ng-click='getScrollHeight()'>获取内容高度</button>
+    内容高度是：{{ scrollHeight }}
+    <hr>
+    <a href="" ng-click='prompt()'>请输入内容：</a>
+    {{ content }}
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('ctrl',['$scope','$window',function($scope,$window){
+            // $window.alert('3');
+            //1
+            $scope.get = function(){
+                if($window.confirm('确定吗？')){
+                    $scope.msg = '你点了确定';
+                }else{
+                    $scope.msg = '你已经取消了';
+                }
+            };
+            //2
+            $scope.getClientHeight = function(){
+                $scope.clientHeight = $window.document.body.clientHeight;
+            };
+            //3
+            $scope.getScrollHeight = function(){
+                $scope.scrollHeight = $window.document.body.scrollHeight;
+            };
+            //4
+            $scope.prompt = function(){
+                $scope.content = $window.prompt('请输入内容');
+            };
+        }])
+
+    </script>
+</html>

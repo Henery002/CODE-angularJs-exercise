@@ -1,0 +1,14 @@
+<div>
+	<!-- 57课时 模板 -->
+	{{ name }}<br><br>
+	<table>
+		<tr>
+			<th>编号</th>
+			<th>名称</th>
+		</tr>
+		<tr ng-repeat='(k,v) in data'>
+			<td>{{ v.id }}</td>
+			<td>{{ v.name }}</td>
+		</tr>
+	</table>
+</div>

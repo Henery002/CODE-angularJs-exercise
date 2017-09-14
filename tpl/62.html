@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 62课 $timeout与$interval实际使用场景分析与实例讲解</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app' ng-controller='ctrl'>
+    <div>{{ name }}</div>
+    <div>{{ id }}</div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        /*一：js的 setTimeout 方法
+        app.controller('ctrl',['$scope',function($scope){
+            $scope.name = '后盾人';
+            setTimeout(function(){
+                $scope.name = 'www.baidu.com';
+                $scope.$apply();    //使用数据脏检查，同步更新视图数据
+            },1200);
+        }]);
+        */
+        /*二：ng的$timeout/$interval服务注入*/
+        app.controller('ctrl',['$scope','$timeout','$interval',function($scope,$timeout,$interval){
+            $scope.name = '后盾人';
+            $scope.id = '0';
+            var timerId = $timeout(function(){
+                $scope.name = 'www.baidu.com';
+            },1000);
+            var timerId2 = $interval(function(){
+                $scope.id ++;
+                if($scope.id >= 12){
+                    $interval.cancel(timerId2);
+                }
+            },400);
+            //清除定时器
+            // $timeout.cancel(timerId);
+        }])
+
+    </script>
+</html>
