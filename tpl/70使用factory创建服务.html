@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 70课 spa项目的server层分析与使用factory创建服务</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+            <tr ng-repeat='v in data'>
+                <td>{{ v.name }}</td>
+                <td>{{ v.URL }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        //使用 factory 自定义服务
+        app.factory('videoSever',['$http',function($http){
+             return {
+                //法1.无效，控制器无法获取到返回的response.data
+                /*get:function(){
+                    $http({
+                        url:'../views/66.php'
+                    }).then(function(response){
+                        return response.data;
+                    })
+                },*/
+                //法2.使用回调函数，可行。但不建议用
+                get:function(callback){
+                    $http({
+                        url:'../views/66.php'
+                    }).then(function(response){
+                        callback(response)
+                    })
+                },
+                //法3.
+                all:function(){
+                    return $http({
+                        url:'../views/66.php'
+                    });
+                }
+             }
+        }]);
+        app.controller('ctrl',['$scope','videoSever',function($scope,videoSever){
+            //法1.无效
+            // $scope.data = videoSever.get();
+            //法2.回调函数
+            /*videoSever.get(function(response){
+                $scope.data = response.data;
+            });*/
+            //法3.使用 promise 对象的形式
+            videoSever.all().then(function(response){
+                $scope.data = response.data;
+            });
+        }]);
+    </script>
+</html>

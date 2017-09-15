@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 69课 $http服务之后台接收POST数据的几种方式</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        {{ name }}
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        app.controller('ctrl',['$scope','$http',function($scope,$http){
+            //第一种处理方式
+            /*
+            $http({
+                method:'post',
+                url:'../views/69.php',
+                data:{id:23,name:'后盾网PHP'},
+                cache:true
+            }).then(function(response){
+                console.log(response);
+            },function(response){
+                console.log(response);
+            });
+            //第二种处理方式
+            */
+            $http({
+                method:'post',
+                url:'../views/69.php',
+                data:$.param({id:23,name:'后盾网PHP'}),      //需要将data数据序列化，否则接收到的数据格式错误
+                headers:{'Content-type':'application/x-www-form-urlencoded'},
+                cache:true
+            }).then(function(response){
+                $scope.name = response.name;
+                console.log(response);
+            },function(response){
+                console.log(response);
+            });
+
+        }]);
+    </script>
+</html>

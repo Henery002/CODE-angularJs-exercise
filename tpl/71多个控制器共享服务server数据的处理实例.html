@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 71课 多个控制器共享服务server数据的处理实例</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl1'>
+        <p></p>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+            <tr ng-repeat='v in data'>
+                <td>{{ v.name }}</td>
+                <td>{{ v.URL }}</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div ng-controller='ctrl2'>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+            <tr ng-repeat='v in data'>
+                <td>{{ v.name }}</td>
+                <td>{{ v.URL }}</td>
+            </tr>
+        </table>
+        <hr>
+        <p>2.</p>
+        {{ web.name }}
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        //使用 factory 自定义服务(创建服务)
+        app.factory('videoSever',['$http',function($http){
+            var obj = {
+                //1.all方法返回一个 promise 对象
+                all:function(){
+                    return $http({url:'../views/66.php'}).then(function(response){
+                        return response.data;
+                    });
+                },
+                //2.查找一条数据
+                find:function(id){
+                    //find方法也返回一个 promise 对象，为控制器提供调用
+                    return this.all().then(function(data){
+                        for(var i = 0;i < data.length;i ++){
+                            if(data[i].id == id){
+                                return data[i];
+                            }
+                        }
+                    });
+                },
+                //3.删除所有数据
+                flush:function(){
+
+                }
+            };
+            return obj;
+        }]);
+        app.controller('ctrl1',['$scope','videoSever',function($scope,videoSever){
+            //videoSever.all()获取到的是一个 promise 对象，所以可以继续对该对象操作
+            videoSever.all().then(function(data){
+                $scope.data = data;
+            });
+        }]);
+        app.controller('ctrl2',['$scope','videoSever',function($scope,videoSever){
+            //1.
+            videoSever.all().then(function(data){
+                $scope.data = data;
+            });
+            //2.查找一条数据
+            videoSever.find(1).then(function(data){
+                $scope.web = data;
+            })
+        }]);
+    </script>
+</html>

@@ -127,13 +127,17 @@
 7.ng-mouseleave
 ...
 
-/*TODO 小案例*/
+/*
+ * TODO 小案例
+ */
 <25> AngularJS+flex弹性盒模型
 <26> AngularJS+flex弹性盒模型
 <27> AngularJS 弹性盒模型+bootStrap 开发微信菜单前端之根据微...
 <28> 弹性盒模型+boo··
 <29> 弹性盒模型+boo··
-/*小案例 end*/
+/*
+ * 小案例 end
+ */
 
 <30> 弹性盒模型+bootStrap 开发微信菜单前端之使用fontawesome..
 1.使用图标库
@@ -147,7 +151,9 @@
 
 <33> 修复删除菜单时一级菜单选项不显示的问题
 
-/*TODO 过滤器/变量调节器*/
+/*
+ * TODO 过滤器/变量调节器
+ */
 <34> filter变量调节器分析与货币变量调节器处理
 1.currency 				//货币变量调节器  --  对数据进行二次处理、
 	例：{{ price | currency:'¥':2 }}  		//表示对price数值四舍五入按价格格式取值
@@ -222,7 +228,9 @@
 				return ...;
 			}
 		});
-/*过滤去/变量调节器 end*/
+/*
+ * 过滤器/变量调节器 end
+ */
 
 <45> SPA应用与自定义指令使用场景应用场景分析
 1.SPA : Single Page Application 简介
@@ -324,7 +332,9 @@
 	2.模板文件引用父级作用域(即直接使用控制器)的数据
 	例：59.html  详解
 
-/*TODO 服务*/
+/*
+ * TODO 服务
+ */
 <60> 服务server应用分析与使用场景
 1.sever服务的概念
 
@@ -368,7 +378,7 @@
 1.$http({method:"post/get",url:"66.php"}).then(function(response){...},function(response){...});  //需要在控制器中注入 $http 服务
 	例：66.html 
 
-<67> $http服务请求缓存操作减少服务器压力加快页面展示0
+<67> $http服务请求缓存操作减少服务器压力加快页面展示
 1.$http({method:'post/get',url:'66.php',cache:true}).then(function(response){...},function(response){...});
 	例：67.html 							//减少相同数据的请求次数
 
@@ -378,17 +388,44 @@
 	例：68.html
 
 <69> $http服务之后台接收POST数据的几种方式
+	例：69.html 示例对比
 
+<70> 【***】SPA项目的server层分析与使用factory创建服务
+1.	app.factory('severName',['$http',function($http){		//使用 factory 定义服务
+		return {
+			fun:function(){...}
+			//...
+		}
+	}]);
+	//在控制器中使用服务及其中的方法
+	app.controller('ctrl',['$scope','severName',function($scope,severName){
+		severName.fun();
+		//...
+	}]);
+	例：70.html 详解使用 factory 创建服务的3种方式及如何使用该服务
 
-<70> spa项目的server层分析与使用factory创建服务
+<71> 【****】多个控制器共享服务server数据的处理实例
+	例：71.html、71-1.html 详解
 
+<72> 【****】使用service创建自定义服务
+1.	app.service('mySever',['$http',function($http){			//使用 service 定义服务
+		this.fun = function(){
+			return $http({...}).then(function(response){
+				return response.data;
+			});
+		}
+	}]);
+	//在控制器中使用服务及其中的方法
+	...
+	例：72.html 实例详解
+/*
+ * 服务 end
+ */
 
-<71> 多个控制器共享服务server数据的处理实例
-
-
-<72> 使用service创建自定义服务
-
-
+ /*
+  * TODO 路由
+  * 两种解决方式：1.ng-route 2.ui-route(更强大)
+  */
 <73> SPA应用的路由使用分析
 
 

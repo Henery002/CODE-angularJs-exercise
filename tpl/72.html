@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 72课 使用service创建自定义服务</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        <p></p>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+            <tr ng-repeat='v in data'>
+                <td>{{ v.name }}</td>
+                <td>{{ v.URL }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        //使用 service 创建服务
+        app.service('videoSever',['$http',function($http){
+            this.get = function(){
+                return $http({method:'get',url:'../views/66.php'}).then(function(response){
+                    return response.data;
+                })
+            }
+        }]);
+        app.controller('ctrl',['$scope','videoSever',function($scope,videoSever){
+            //videoSever.all()获取到的是一个 promise 对象，所以可以继续对该对象操作
+            videoSever.get().then(function(data){
+                $scope.data = data;
+            });
+        }]);
+    </script>
+</html>

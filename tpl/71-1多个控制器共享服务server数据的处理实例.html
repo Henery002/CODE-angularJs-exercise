@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 71-1课 多个控制器共享服务server数据的处理实例</title>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl1'>
+        <p></p>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+            <tr ng-repeat='v in data.webs'>
+                <td>{{ v.name }}</td>
+                <td>{{ v.URL }}</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div ng-controller='ctrl2'>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>名称</th>
+                <th>地址</th>
+            </tr>
+            <tr ng-repeat='v in data.webs'>
+                <td>{{ v.name }}</td>
+                <td>{{ v.URL }}</td>
+            </tr>
+        </table>
+        <hr>
+        <button ng-click='removeAll()'>删除所有数据</button>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',[]);
+        //使用 factory 自定义服务
+        app.factory('videoSever',['$http',function($http){
+            var obj = {
+                /*
+                * 将 data 改成对象的形式，才可以实现更改data的数据，实现同步数据更新
+                * 区别于 data:[] 数组的形式。因为数组的传值是 复制 ，对象的传值是 传址
+                */
+                data:{webs:[]},     
+                //1.all方法返回一个 promise 对象
+                all:function(){
+                    return $http({url:'../views/66.php'}).then(function(response){
+                        obj.data.webs = response.data;          //将返回值存进data对象的webs数组中，
+                        return obj.data; 
+                    });
+                },
+                //3.删除所有数据
+                flush:function(){
+                    obj.data.webs = [];         
+                    /*
+                    *
+                    * 删除时将对象的内容清空。因为对象的使用都是传址，而不是复制，所以更改该对象的数据，会同步影响视图数据，实现同步更新
+                    *
+                    */
+                }
+            };
+            return obj;
+        }]);
+        app.controller('ctrl1',['$scope','videoSever',function($scope,videoSever){
+            //videoSever.all()获取到的是一个 promise 对象，所以可以继续对该对象操作
+            videoSever.all().then(function(data){
+                $scope.data = data;
+            });
+        }]);
+        app.controller('ctrl2',['$scope','videoSever',function($scope,videoSever){
+            //1.
+            videoSever.all().then(function(data){
+                $scope.data = data;
+            });
+            //3.定义删除方法
+            $scope.removeAll = function(){
+                videoSever.flush();
+                console.log(videoSever.data);
+            }
+        }]);
+    </script>
+</html>
