@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 77课 uiRouter路由控制器使用方式详解</title>
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/angular-ui-router.min.js'></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        <a href="" ui-sref='index'>首页</a>
+        <a href="" ui-sref='lists'>列表页</a>
+        <div ui-view></div>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',['ui.router']);
+        app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $urlRouterProvider.otherwise('');
+            $stateProvider.state('home',{
+                url:'',
+                template:'<h1>网易云课堂</h1>'
+            }).state('index',{
+                url:'/index',
+                templateUrl:'../views/76-index.html',
+                //1.在路由中添加 controller 属性
+                controller:['$scope',function($scope){
+                    $scope.name = '路由中的控制器数据';
+                }]
+            }).state('lists',{
+                url:'/lists',
+                template:'<h2>列表页</h2>'
+            })
+        }]);
+        //2.路由中也可以访问外部控制器中的变量
+        app.controller('ctrl',['$scope',function($scope){
+            $scope.title = '外部控制器数据';
+        }]);
+
+    </script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 79课 uiRouter路由参数设置与$stateParams服务的使用</title>
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/angular-ui-router.min.js'></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        <div ui-view></div>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',['ui.router']);
+        app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $urlRouterProvider.otherwise('/home');
+            $stateProvider.state('home',{
+                url:'/home',
+                templateUrl:'../views/79-index.html',
+                controller:'ctrl'   
+            }).state('lists',{
+                url:'/lists/{id}',              //或 url:'/lists/:id',
+                template:'用户名：{{ lists.name }}',
+                controller:'ctrl'
+            })
+        }]);
+        app.controller('ctrl',['$scope','$stateParams',function($scope,$stateParams){
+            $scope.lists = [
+                {id:1,name:'慕课网'},
+                {id:2,name:'极客学院'},
+                {id:3,name:'麦子学院'}
+            ];
+            //用 $stateParams 抓取序号
+            id = $stateParams.id;
+            console.log($stateParams);      //该服务获取到的参数将是：{id:1} 或 {id:2} 或 {id:3}
+            // alert(id);
+            if(id){             //id在 /home 页面是 undefined ，所以此处要做判断只有当id不为undefined时，即是在lists页面上时
+                for(var i = 0;i < $scope.lists.length;i ++){
+                    if(id == $scope.lists[i].id){
+                        $scope.lists = $scope.lists[i];
+                    }
+                }
+            
+            }
+        }]);
+
+    </script>
+</html>

@@ -427,11 +427,84 @@
   * 两种解决方式：1.ng-route 2.ui-route(更强大)
   */
 <73> SPA应用的路由使用分析
-
-
 <74> uiRouter默认路由规则操作
-
+	需要引入 angular-ui-router.min.js 文件
+1.	<div ui-view></div>								//定义视图文件存放视图
+2.	使用config进行定义。必须在路由器执行之前进行配置	
+	app.config(['$stateRouter','$urlRouterProvider',function($stateRouter,$urlRouterProvider){
+		$urlRouterProvider.otherwise('/my');		//设置默认路由
+		$stateRouter.state('default',{				//定义路由规则
+			url:'/my',
+			template:'<h1>网易云课堂</h1>'
+		});
+	}]);
+	例：74.html 实例详解
 
 <75> uiRouter链接上实例路由跳转方式
+1.uiRouter提供了专门用来跳转的指令 ui-sref ，功能代替a标签的 href 属性
+	//写法一：
+	<a href='#home'>首页</a>
+	//写法二：
+	<a href='' ui-sref='list'>列表页</a>
+	例：75.html
 
+<76> uiRouter路由模板设置方式实例
+1.templateUrl:'../views/76-index.html' 				//引入外部模板文件
+	例：76.html
 
+<77> uiRouter路由中的控制器使用方式详解
+1.	$stateProvider.state('index',{
+		url:'/index',
+		templateUrl:'../views/76-index.html',		//在模板文件中调用该路由中控制器定义的数据
+		//在路由值定义controller属性；也可以在外部控制器中定义属性用于模板访问
+		controller:['$scope',function($scope){
+			$scope.name = '路由中的控制器数据';
+		}]
+	});
+	例：77.html
+
+<78> 【***】uiRouter路由控制器或指令中执行路由跳转
+1.在控制器或指令中注入 $state 服务
+	app.controller('ctrl',['$scope','$state',function($scope,$state){
+		$scope.go = function(url){					//定义scope的方法
+			$state.go(url);							//使用$state的 go 方法
+		};
+	}]);
+	//对应在模板文件中：
+	<a href='' ng-clicl='go("lists")'>跳转到列表页</a>
+	例：78.html
+
+<79> uiRouter路由参数设置与$stateParams服务的使用
+	实现路由参数的设置 								//如：../79.html#/lists/2
+	***：CSDN关于 $stateParams 服务的详解 http://blog.csdn.net/qian_xiaona/article/details/50888212
+1.控制器中注入 $stateParams 服务，获取状态参数
+2.在路由配置中配置 url:'/lists/{id}' 或 url:'/lists/:id'
+	例：79.html 实例详解
+
+<80> 【***】uiRouter路由定义高效的父子级嵌套路由
+1.	$stateProvider.state('home',{
+		url:'/home',
+		template:'<h1>...</h1>'
+	}).state('home.news',{				//方法一：
+		url:'/news',
+		template:'<h1>...</h1>'
+	}).state('game',{
+		url:'/game',
+		parent:'home',					//方法二：
+		template:'<h1>...</h1>'
+	});
+	//对应的模板视图中：
+	<a href='' ui-sref='home.news'>新闻</a>
+	<a href='' ui-sref='game'>游戏</a>
+	例：80.html 实例详解
+
+<81> uiRouter路由定义超灵活的嵌套路由视频
+	多视图嵌套的实现方法
+	例：81.html 多文件实例详解
+
+<82> uiRouter路由多个view下的父子级视图嵌套使用
+	例：82.html 实例详解
+/*
+ * 路由 end
+ * 2017.09.16 15:10;
+ */

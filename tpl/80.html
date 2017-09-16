@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 80课 uiRouter路由定义高效的父子级嵌套路由</title>
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/angular-ui-router.min.js'></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div>
+        <div ui-view></div>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',['ui.router']);
+        app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $urlRouterProvider.otherwise('/home');
+            //定义路由规则
+            $stateProvider.state('home',{
+                url:'/home',
+                templateUrl:'../views/80-home.html'
+            }).state('home.news',{              //法一：
+                url:'/news',
+                template:'<h1>新闻</h1>'
+            }).state('game',{       
+                url:'/game',
+                parent:'home',                  //法二：
+                template:'<h1>游戏</h1>'
+            }).state('login',{
+                url:'/login',
+                // parent:'home',
+                template:'<h1>登录界面</h1>'
+            })
+        }]);
+
+    </script>
+</html>

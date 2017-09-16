@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 81课 uiRouter路由定义超灵活的嵌套路由视频</title>
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/angular-ui-router.min.js'></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<style type="text/css">
+    *{ margin: 0;padding: 0; }
+    ul,ol,li{ list-style: none; }
+    div[ui-view=top]{ background-color: #ccc;padding: 20px 40px; }
+    div[ui-view=left]{ background-color: #f0f;width:200px;height:400px;float: left; }
+    div[ui-view=right]{ background-color: #0ff;height:400px; }
+</style>
+<body ng-app='app'>
+    <div>
+        <div ui-view=''></div>          <!-- 留空 -->
+        <div ui-view='content'></div>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',['ui.router']);
+        app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $urlRouterProvider.otherwise('/my');
+            //定义路由规则
+            $stateProvider.state('my',{
+                url:'/my',
+                //参数 views
+                views:{
+                    //因为主视图的名称为 content ，所以此处视图名若不起名为content，则需要用 '@' 或 ''
+                    '@':{
+                        templateUrl:'../views/82-my.html'
+                    },
+                    //还可以继续添加内容
+                    'content':{
+                        template:'添加的内容'
+                    }
+                }
+                //此处希望 video 部分在子视图中显示，所以：
+            }).state('my.video',{
+                url:'/video',
+                //参数 views
+                views:{
+                    //格式 ： '子视图名@父视图名'
+                    'son@my':{
+                        templateUrl:'../views/82-video.html'
+                    },
+                    //若不想让 my 父视图的content内容影响到子视图，则此处需要设置："content@"，将值清空
+                    'content@':{
+                        template:''         //赋值为空
+                    }
+                }
+            })
+        }]);
+    </script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 75课 uiRouter默认路由规则操作</title>
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/angular-ui-router.min.js'></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        <!-- uiRouter 提供了专门用来跳转的指令 ui-sref ，功能代替 href属性 -->
+        <a href="#index">首页</a>
+        <a href="" ui-sref='lists'>列表页</a>
+        <!-- 视图容器 -->
+        <div ui-view>提示：您访问的页面不存在</div>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',['ui.router']);
+        app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            $urlRouterProvider.otherwise('');
+            $stateProvider.state('home',{
+                url:'',         //为空表示默认进入的是该路由
+                template:'<h1>网易云课堂</h1>'
+            }).state('index',{
+                url:'/index',
+                template:'<h2>首页</h2>'
+            }).state('lists',{
+                url:'/lists',
+                template:'<h2>列表页</h2>'
+            })
+        }]);
+        app.controller('ctrl',['$scope',function($scope){
+
+        }]);
+
+    </script>
+</html>

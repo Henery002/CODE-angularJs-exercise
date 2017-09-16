@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angularJS- 74课 uiRouter默认路由规则操作</title>
+    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src='../js/angular-ui-router.min.js'></script>
+    <script type="text/javascript" src='../js/jquery.min.js'></script>
+</head>
+<body ng-app='app'>
+    <div ng-controller='ctrl'>
+        <!-- 视图容器 -->
+        <div ui-view></div>
+    </div>
+</body>
+    <script>
+        var app = angular.module('app',['ui.router']);
+        //使用config进行定义。必须在路由器执行之前执行配置
+        app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+            //设置默认路由。设置默认路由为 /my 之后，不合格的url访问都会强制跳转到已定义的路由中；
+            //若不设置默认路由，则可在视图容器中定义提示页面不存在内容，提示将默认路由更改为 '' 空字符串。
+            $urlRouterProvider.otherwise('/my');
+            //定义路由规则
+            $stateProvider.state('default',{
+                url:'/my',
+                template:'<h1>网易云课堂</h1>'
+            })
+        }]);
+        app.controller('ctrl',['$scope',function($scope){
+
+        }]);
+
+    </script>
+</html>
